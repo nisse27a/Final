@@ -8,11 +8,11 @@
 }
 
 :root {
-  --main-color: #02bb4e;
-  --secondary-color: #1e1e31;
-  --color3: #e9d0a5;
-  --color4: #3be447;
-  --color5: #4e1320;
+  --main-color: #292f36;
+  --secondary-color: #2589bd;
+  --color3: #34d1bf;
+  --color4: #fffbff;
+  --color5: #ec4e20;
 }
 
 header {
@@ -23,7 +23,7 @@ header {
 }
 
 nav {
-  background-color: pink;
+  background-color: var(--secondary-color);
 }
 
 nav ul {
@@ -32,7 +32,7 @@ nav ul {
   text-align: center;
 }
 
-nav ul li a {
+nav ul li .textOption {
   display: block;
   line-height: 11vh;
   text-decoration: none;
@@ -40,9 +40,9 @@ nav ul li a {
   transition: all 200ms;
 }
 
-nav ul li a:hover {
-  background-color: var(--color5);
-  color: var(--color3);
+nav ul li .textOption:hover {
+  background-color: var(--color4);
+  color: var(--main-color);
 }
 
 .blank {
@@ -59,6 +59,6 @@ nav ul li a:hover {
 }
 
 #logo {
-  height: 9vh;
+  height: 8vh;
   padding-top: 1vh;
 }

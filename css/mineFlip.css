@@ -1,7 +1,7 @@
 #gameboard {
-  width: 40vw;
+  width: 25vw;
   height: 40vh;
-  margin: 20vh auto;
+  margin: 15vh auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;

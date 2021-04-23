@@ -2,36 +2,102 @@
 
 let gameTiles = [[],[],[],[],[]];//gameTiles[row][column]
 let gameValues = [[],[],[],[],[]];
+assignValues();
+setup();
 
-for(let row = 0; row<5; row++) {
+function rowSum(row) {
+    let sum = 0;
     for(let column = 0; column<5; column++) {
-        let newButton = document.createElement("button");
-        newButton.setAttribute("id","button" + row + "-" + column);
-        newButton.setAttribute("onclick", "tileFlip(\"button" + row + "-" + column + "\")");
-
-        document.getElementById("gameboard").appendChild(newButton);
-        gameTiles[row][column] = newButton;
-        gameTiles[row][column].innerText = "Tile";
+        sum += gameValues[row][column];
     }
+    return sum;
+}
+
+function rowMines(row) {
+    let sum = 0;
+    for(let column = 0; column<5; column++) {
+        if(gameValues[row][column]==0) {
+            sum++;
+        }
+    }
+    return sum;
+}
+
+function columnSum(column) {
+    let sum = 0;
+    for(let row = 0; row<5; row++) {
+        sum += gameValues[row][column];
+    }
+    return sum;
+}
+
+function columnMines(column) {
+    let sum = 0;
+    for(let row = 0; row<5; row++) {
+        if(gameValues[row][column]==0) {
+            sum++;
+        }
+    }
+    return sum;
 }
 
 function assignValues() {
+    let availableValues = [0,1,2,3];
+    //denna array innehåller hur många av varje siffra som förekommer på spelplanen, när det inte finns 
+    //några kvar av en sort, så tas den motsvarande siffran bort från ^^
+    let maxAvailableCount = [8,9,5,3];
+
     for(let row = 0; row<5;row++) {
         for(let column = 0; column<5;column++) {
-            gameValues[row][column] = Math.floor(Math.random()*4);
+            let temp = availableValues[Math.floor(Math.random()*availableValues.length)];
+            gameValues[row][column] = temp;
+            maxAvailableCount[temp]--;
+
+            if(maxAvailableCount[temp]<=0) {
+                availableValues.splice(availableValues.indexOf(temp),1);
+            }
         }
     }
 }
-assignValues();
 
 function tileFlip(buttonId) {
-    console.log(document.getElementById(buttonId));
-    document.getElementById(buttonId)
     for(let row = 0; row<5;row++) {
         for(let column = 0; column<5;column++) {
             if(("button" + row + "-" + column)==buttonId) {
                 gameTiles[row][column].innerText = gameValues[row][column];
             }
         }
+    }
+}
+
+function setup() {
+    for(let row = 0; row<5; row++) {
+        for(let column = 0; column<5; column++) {
+            let newButton = document.createElement("button");
+            newButton.setAttribute("id","button" + row + "-" + column);
+            newButton.setAttribute("onclick", "tileFlip(\"button" + row + "-" + column + "\")");
+
+            document.getElementById("tiles").appendChild(newButton);
+            gameTiles[row][column] = newButton;
+            gameTiles[row][column].innerText = "[]";
+        }
+    }
+    for(let row = 0; row<5; row++) {
+        let newButton = document.createElement("button");
+        newButton.setAttribute("id","button" + row);
+        newButton.setAttribute("onclick", "tileFlip(\"button" + row +"\")");
+
+        document.getElementById("sidebar").appendChild(newButton);
+        newButton.innerHTML = "<p>Sum:" + rowSum(row) + "</p>";
+        newButton.innerHTML += "<p>Mines:" + rowMines(row) + "</p>";
+    }
+    for(let column = 0; column<5; column++) {
+        let newButton = document.createElement("button");
+        newButton.setAttribute("id","button" + column);
+        newButton.setAttribute("onclick", "tileFlip(\"button" + column +"\")");
+
+        document.getElementById("bottombar").appendChild(newButton);
+        newButton.innerHTML = "<p>Sum:" + columnSum(column) + "</p>"; 
+        newButton.innerHTML += "<p>Mines:" + columnMines(column) + "</p>";
     }
 }

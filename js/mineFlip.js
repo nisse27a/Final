@@ -2,6 +2,7 @@
 
 let gameTiles = [[],[],[],[],[]];//gameTiles[row][column]
 let gameValues = [[],[],[],[],[]];
+
 assignValues();
 setup();
 

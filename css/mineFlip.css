@@ -1,15 +1,27 @@
+:root {
+  --main-color: #292f36;
+  --secondary-color: #2589bd;
+  --color3: #34d1bf;
+  --color4: #fffbff;
+  --color5: #ec4e20;
+}
+
 section {
   margin: 15vh 10vw 0;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
 }
-
+#tiles,
+#sidebar,
+#bottombar {
+  display: grid;
+  /*gap: 0.5vw;*/
+}
 #tiles {
   width: 25vw;
   height: 40vh;
   margin: 0 0 0 auto;
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }

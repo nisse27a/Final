@@ -2,8 +2,6 @@
 
 let gameTiles = [[],[],[],[],[]];//gameTiles[row][column]
 let gameValues = [[],[],[],[],[]];
-
-assignValues();
 setup();
 
 function rowSum(row) {
@@ -46,16 +44,16 @@ function assignValues() {
     let availableValues = [0,1,2,3];
     //denna array innehåller hur många av varje siffra som förekommer på spelplanen, när det inte finns 
     //några kvar av en sort, så tas den motsvarande siffran bort från ^^
-    let maxAvailableCount = [8,9,5,3];
+    let maxAvailableCount = [8,11,5,3];
 
     for(let row = 0; row<5;row++) {
         for(let column = 0; column<5;column++) {
-            let temp = availableValues[Math.floor(Math.random()*availableValues.length)];
-            gameValues[row][column] = temp;
-            maxAvailableCount[temp]--;
+            let tileValue = availableValues[Math.floor(Math.random()*availableValues.length)];
+            gameValues[row][column] = tileValue;
+            maxAvailableCount[tileValue]--;
 
-            if(maxAvailableCount[temp]<=0) {
-                availableValues.splice(availableValues.indexOf(temp),1);
+            if(maxAvailableCount[tileValue]<=0) {
+                availableValues.splice(availableValues.indexOf(tileValue),1);
             }
         }
     }
@@ -66,12 +64,22 @@ function tileFlip(buttonId) {
         for(let column = 0; column<5;column++) {
             if(("button" + row + "-" + column)==buttonId) {
                 gameTiles[row][column].innerText = gameValues[row][column];
+                if(gameValues[row][column]==0) {
+                    alert("You flipped a mine, you lost");
+                    //reset();
+                }
             }
         }
     }
 }
 
+function reset() {
+    assignValues();
+    infoBars();
+}
+
 function setup() {
+    assignValues();
     for(let row = 0; row<5; row++) {
         for(let column = 0; column<5; column++) {
             let newButton = document.createElement("button");

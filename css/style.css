@@ -14,7 +14,7 @@
   --color4: #fffbff;
   --color5: #ec4e20;
 }
-
+/*#region Top Menu*/
 header {
   position: sticky;
   top: 0;
@@ -62,3 +62,4 @@ nav ul li .textOption:hover {
   height: 8vh;
   padding-top: 1vh;
 }
+/*#endregion*/

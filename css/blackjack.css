@@ -5,16 +5,18 @@
   --color4: #fffbff;
   --color5: #ec4e20;
 }
+
 /*#region Table layout */
 section {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 3fr 2fr 3fr;
+  grid-template-rows: 4fr 2fr 4fr;
   gap: 0px 0px;
   grid-template-areas:
     ". dealer ."
     ". betting ."
     ". player .";
+  height: 89vh;
 }
 
 .dealer {
@@ -49,6 +51,13 @@ section {
   grid-area: multipleButtons;
 }
 /*#endregion*/
-/*#region BetButton*/
+
+/*#region Betting*/
+#bet {
+  height: 100%;
+}
+#bet #test {
+  align-self: center;
+}
 
 /*#endregion*/

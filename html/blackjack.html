@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/blackjack.css">
     <title>Document</title>
+    <script defer src="../js/blackjack.js"></script>
 </head>
 
 <body>
@@ -24,28 +25,40 @@
         </nav>
     </header>
     <section>
-        <div class="dealer"></div>
-        <div class="player"></div>
-        <div class="betting">
-            <div class="betButton">
-                <fieldset id="bet">
-                    <legend>
-                        <h1 id="bank">Bank: </h1>
+        <div class="dealer inGame invisible"></div>
+        <div class="player inGame invisible"></div>
+        <div class="betting offGame">
+            <form class="betButton">
+                <fieldset id="betting">
+                    <legend id="bank">
+                        Bank:
                     </legend>
-                    <div id="test">
+                    <label>
+                        Bet amount:
                         <input type="text">
-                        <button>Submit</button>
-                    </div>
+                        <button type="button" onclick="Bet()">Bet</button>
+                    </label>
                 </fieldset>
-            </div>
+            </form>
             <div class="multipleButtons">
-                <button id="timesTwo">x2</button>
-                <button id="divideTwo">/2</button>
-                <button id="clear">Clear</button>
-                <button id="max">Max</button>
+                <button onclick="ChangeBet('timesTwo')">x2</button>
+                <button onclick="ChangeBet('divideTwo')">/2</button>
+                <button onclick="ChangeBet('clear')">Clear</button>
+                <button onclick="ChangeBet('max')">Max</button>
             </div>
+        </div>
+        <div class="gameInput inGame invisible">
+            <fieldset>
+
+                <button class="gameInputs" onclick="PickCard(player)">Hit</button>
+                <button class="gameInputs">Stand</button>
+                <button class="gameInputs">Double</button>
+                <button class="gameInputs">Split</button>
+                <legend id="bet">
+                    Bet:
+                </legend>
+            </fieldset>
         </div>
     </section>
 </body>
-
 </html>

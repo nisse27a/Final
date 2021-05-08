@@ -14,7 +14,7 @@ section {
   gap: 0px 0px;
   grid-template-areas:
     ". dealer ."
-    ". betting ."
+    ". playerInput ."
     ". player .";
   height: 89vh;
 }
@@ -33,7 +33,7 @@ section {
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "betButton multipleButtons";
-  grid-area: betting;
+  grid-area: playerInput;
 }
 
 .betButton {
@@ -50,14 +50,47 @@ section {
     ". .";
   grid-area: multipleButtons;
 }
+
 /*#endregion*/
 
 /*#region Betting*/
-#bet {
+#betting {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/*#endregion*/
+
+/*#region GameToggle*/
+.invisible {
+  display: none;
+}
+
+.gameInput {
+  grid-area: playerInput;
+}
+.gameInput fieldset {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    ". ."
+    ". .";
+}
+/* .playerInput {
+  grid-area: betting;
+}
+
+.playerInput fieldset {
   height: 100%;
 }
-#bet #test {
-  align-self: center;
-}
+
+.inputField {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    ". ."
+    ". .";
+} */
 
 /*#endregion*/

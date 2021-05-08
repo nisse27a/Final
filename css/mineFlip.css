@@ -7,6 +7,7 @@
 }
 section {
   margin: 15vh 25vw 0;
+  width: 50vw;
   display: grid;
   grid-template-columns: 5fr 1fr;
   grid-template-rows: 5fr 1fr;
@@ -14,15 +15,6 @@ section {
   grid-template-areas:
     "tiles sidebar"
     "bottombar .";
-}
-
-#bottombar {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-template-areas: ". . . . .";
-  grid-area: bottombar;
 }
 
 #tiles {
@@ -38,6 +30,15 @@ section {
     ". . . . .";
   grid-area: tiles;
 }
+/*#region bars*/
+#bottombar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". . . . .";
+  grid-area: bottombar;
+}
 
 #sidebar {
   display: grid;
@@ -52,3 +53,14 @@ section {
     ".";
   grid-area: sidebar;
 }
+
+button {
+  border: 5px groove var(--main-color);
+  background-color: var(--color5);
+  color: var(--main-color);
+}
+button:hover {
+  border: 5px ridge var(--secondary-color);
+  background-color: var(--color4);
+}
+/*#endregion*/

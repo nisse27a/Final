@@ -21,10 +21,18 @@ section {
 
 .dealer {
   grid-area: dealer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .player {
   grid-area: player;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .betting {
@@ -77,20 +85,5 @@ section {
     ". ."
     ". .";
 }
-/* .playerInput {
-  grid-area: betting;
-}
-
-.playerInput fieldset {
-  height: 100%;
-}
-
-.inputField {
-  height: 100%;
-  display: grid;
-  grid-template-areas:
-    ". ."
-    ". .";
-} */
 
 /*#endregion*/

@@ -30,9 +30,7 @@
         <div class="betting offGame">
             <form class="betButton">
                 <fieldset id="betting">
-                    <legend id="bank">
-                        Bank:
-                    </legend>
+                    <legend id="bank">Bank:</legend>
                     <label>
                         Bet amount:
                         <input type="text">
@@ -49,14 +47,16 @@
         </div>
         <div class="gameInput inGame invisible">
             <fieldset>
+                <button onclick="Hit()">Hit</button>
+                <button onclick="Stand()">Stand</button>
+                <button>Double</button>
+                <button>Split</button>
+                <legend id="bet">Bet:</legend>
+            </fieldset>
+        </div>
+        <div class="afterGame invisible">
+            <fieldset>
 
-                <button class="gameInputs" onclick="PickCard(player)">Hit</button>
-                <button class="gameInputs">Stand</button>
-                <button class="gameInputs">Double</button>
-                <button class="gameInputs">Split</button>
-                <legend id="bet">
-                    Bet:
-                </legend>
             </fieldset>
         </div>
     </section>

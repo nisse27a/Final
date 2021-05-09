@@ -211,12 +211,12 @@ function WinCheck(blackjack) {
     let dealerScore = dealer.CardSum;
     if(playerScore==21&blackjack) {
         Win(blackjack);
-    } else if(playerScore<=21&(playerScore>dealerScore)&!blackjack) {
+    } else if(playerScore<=21&((playerScore>dealerScore)||dealerScore>21)&!blackjack) {
         Win(blackjack);
     } else if((playerScore==dealerScore)&!blackjack)
     {
-        return false;
-    } else {
+        Push();
+    } else if(!blackjack) {
         Loss();
     }
 }
@@ -228,9 +228,16 @@ function Win(blackjack) {
         player.Money = player.Money + 2*parseInt(player.Bet);
     }
     UpdateBank(player.Money);
+    console.log(player.Money);
+    document.querySelector(".gameInput").classList.toggle("invisible");
+}
+
+function Push() {
+    document.querySelector(".gameInput").classList.toggle("invisible");
 }
 
 function Loss() {
     UpdateBank(player.Money);
+    document.querySelector(".gameInput").classList.toggle("invisible");
 }
 //#endregion

@@ -74,16 +74,20 @@ section {
 .invisible {
   display: none;
 }
+fieldset {
+  height: 100%;
+}
 
 .gameInput {
   grid-area: playerInput;
 }
 .gameInput fieldset {
-  height: 100%;
   display: grid;
   grid-template-areas:
     ". ."
     ". .";
 }
-
+.afterGame {
+  grid-area: playerInput;
+}
 /*#endregion*/

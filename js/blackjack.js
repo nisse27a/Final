@@ -5,7 +5,7 @@
 let player = {
     Cards: [],
     CardSum: 0,
-    Bet: 0,
+    Bet: GetBet(),
     Money: GetMoney(),
     PlayField: "player"
 }
@@ -22,6 +22,23 @@ function GetMoney() {
     }
     return parseInt(localStorage.getItem("bank"));
 }
+
+function SetBank(money) {
+    localStorage.setItem("bank", JSON.stringify(money))
+}   
+
+function GetBet() {
+    let bet = localStorage.getItem("bet");
+    if(bet=="null"||bet==null) {
+        localStorage.setItem("bet","100")
+    }
+    return parseInt(localStorage.getItem("bet"));
+}
+
+function SetBet(bet) {
+    localStorage.setItem("bet", JSON.stringify(bet))
+}
+
 //Carddeck är organiserad som en nestad array där de nestade arrays är de olika färger
 //[[Diamnods],[Spades],[Hearts],[Clubs]]
 let cardDeck = [[],[],[],[]];
@@ -70,9 +87,7 @@ for(let suit = 0; suit <4;suit++) {
     }
 }
 
-function UpdateBank(money) {
-    localStorage.setItem("bank", JSON.stringify(money))
-}   
+
 //#endregion
 
 //#region CardFunctions
@@ -125,7 +140,7 @@ function PrintCard(user, card) {
 
 //#region Betting
 document.getElementById("bank").innerText += " " + player.Money;
-
+document.querySelector("input[type='text']").value = player.Bet;
 function ChangeBet(buttonFunction) {
     let currentBet = document.querySelector("input[type='text']").value;
     switch(buttonFunction) {
@@ -152,19 +167,18 @@ function ChangeBet(buttonFunction) {
     document.querySelector("input[type='text']").value = currentBet;
 }
 function Bet() {
-    //lagra bettet i localstorage på nåt sätt
-    player.Bet = document.querySelector("input[type='text']").value;
-    if(parseInt(player.Bet)>player.Money) {
+    player.Bet = parseInt(document.querySelector("input[type='text']").value);
+    if(player.Bet>player.Money) {
         player.Bet = player.Money;
     }
     document.getElementById("bet").innerText += " " + player.Bet;
 
-    player.Money = player.Money - parseInt(player.Bet);
     document.querySelector(".offGame").classList.toggle("invisible");
     let inGameFields = document.querySelectorAll(".inGame");
     inGameFields.forEach((field) => {
         field.classList.toggle("invisible");
     });
+    SetBet(player.Bet);
 
     GameStart();
 }
@@ -187,6 +201,9 @@ function Hit() {
     if(player.CardSum>=21) {
         Stand();
     }
+    if(player.Cards.length==3) {
+        document.getElementById("double").classList.toggle("unavailable");
+    }
 }
 
 function Stand() {
@@ -195,15 +212,20 @@ function Stand() {
         PickCard(dealer);
         PrintCard(dealer, dealer.Cards[dealer.Cards.length-1])
     }
+    player.Money = player.Money - player.Bet;
     WinCheck(false);
 }
 
 function Double() {
-
+    if(player.Cards.length<3) {
+        player.Bet *= 2;
+        PickCard(player);
+        Stand();
+    }
 }
 
 function Split() {
-
+    alert("This function is currently in development");
 }
 
 function WinCheck(blackjack) {
@@ -219,25 +241,37 @@ function WinCheck(blackjack) {
     } else if(!blackjack) {
         Loss();
     }
+    if(!blackjack) {
+        document.querySelector(".afterGame").classList.toggle("invisible");
+    }
 }
 
 function Win(blackjack) {
+    let prizeMoney;
     if(blackjack){
-        player.Money = player.Money + 2.5*parseInt(player.Bet);
+        player.Money = player.Money + 1.5*player.Bet;
+        prizeMoney = 1.5*player.Bet;
+        document.querySelector(".afterGame").classList.toggle("invisible");
     } else {
-        player.Money = player.Money + 2*parseInt(player.Bet);
+        player.Money = player.Money + 2*player.Bet;
+        prizeMoney = player.Bet;
     }
-    UpdateBank(player.Money);
-    console.log(player.Money);
+    SetBank(player.Money);
     document.querySelector(".gameInput").classList.toggle("invisible");
+    document.getElementById("result").innerText = "Win";
+    document.getElementById("resultText").innerText = "You beat the dealer and won " + prizeMoney + " tokens";
 }
 
 function Push() {
     document.querySelector(".gameInput").classList.toggle("invisible");
+    document.getElementById("result").innerText = "Push";
+    document.getElementById("resultText").innerText = "You and the dealer achieved the same number of points, thereby reaching a tie";
 }
 
 function Loss() {
-    UpdateBank(player.Money);
+    SetBank(player.Money);
     document.querySelector(".gameInput").classList.toggle("invisible");
+    document.getElementById("result").innerText = "Loss";
+    document.getElementById("resultText").innerText = "The dealer beat you and you lost " + player.Bet + " tokens";
 }
 //#endregion

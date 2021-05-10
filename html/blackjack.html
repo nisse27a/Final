@@ -16,7 +16,7 @@
     <header>
         <nav>
             <ul>
-                <li class="item"><a class="textOption" href="index.html">Hem</a></li>
+                <li class="item"><a class="textOption" href="../index.html">Home</a></li>
                 <li class="item"><a class="textOption" href="mineFlip.html">Mine Flip</a></li>
                 <li class="item"><img id="logo" src="../img/logoTransMini.png" alt="hej"></li>
                 <li class="item"><a class="textOption" href="">Blackjack</a></li>
@@ -25,8 +25,12 @@
         </nav>
     </header>
     <section>
-        <div class="dealer inGame invisible"></div>
-        <div class="player inGame invisible"></div>
+        <div class="player inGame invisible">
+            <p>Player:</p>
+        </div>
+        <div class="dealer inGame invisible">
+            <p>Dealer:</p>
+        </div>
         <div class="betting offGame">
             <form class="betButton">
                 <fieldset id="betting">
@@ -49,14 +53,15 @@
             <fieldset>
                 <button onclick="Hit()">Hit</button>
                 <button onclick="Stand()">Stand</button>
-                <button>Double</button>
-                <button>Split</button>
+                <button id="double" onclick="Double()">Double</button>
+                <button class="unavailable" onclick="Split()">Split</button>
                 <legend id="bet">Bet:</legend>
             </fieldset>
         </div>
         <div class="afterGame invisible">
             <fieldset>
                 <legend id="result"></legend>
+                <p id="resultText"></p>
             </fieldset>
         </div>
     </section>

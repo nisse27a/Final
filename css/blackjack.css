@@ -13,9 +13,9 @@ section {
   grid-template-rows: 4fr 2fr 4fr;
   gap: 0px 0px;
   grid-template-areas:
-    ". dealer ."
+    ". player ."
     ". playerInput ."
-    ". player .";
+    ". dealer .";
   height: 89vh;
 }
 
@@ -89,5 +89,13 @@ fieldset {
 }
 .afterGame {
   grid-area: playerInput;
+}
+.afterGame fieldset {
+  text-align: center;
+}
+.unavailable {
+  border: 5px groove var(--main-color);
+  background-color: var(--color5);
+  color: var(--main-color);
 }
 /*#endregion*/

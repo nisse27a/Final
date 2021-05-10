@@ -26,7 +26,7 @@ header {
 }
 
 nav {
-  background-color: var(--secondary-color);
+  background-color: var(--main-color);
 }
 
 nav ul {
@@ -39,7 +39,7 @@ nav ul li .textOption {
   display: block;
   line-height: 11vh;
   text-decoration: none;
-  color: black;
+  color: var(--color5);
   transition: all 200ms;
 }
 
@@ -62,7 +62,7 @@ nav ul li .textOption:hover {
 }
 
 #logo {
-  height: 8vh;
+  height: 9vh;
   padding-top: 1vh;
 }
 /*#endregion*/

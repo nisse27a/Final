@@ -1,0 +1,29 @@
+#casino-background {
+  background-image: url(../img/casinoBackground.jpg);
+  height: 70vh;
+  width: auto;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(50%);
+}
+
+div + h1 {
+  text-align: center;
+  line-height: 2;
+  color: var(--color5);
+  background-color: var(--main-color);
+}
+
+#intro {
+  display: grid;
+  padding: 2vh 1vw;
+  grid-template-columns: 5fr 5fr;
+  grid-gap: 4vw;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 800px) {
+  #intro {
+    grid-template-columns: 1fr;
+  }
+}

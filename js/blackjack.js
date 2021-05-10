@@ -202,7 +202,6 @@ function Reset() {
     player.Cards = [];
     dealer.Cards = [];
     document.querySelector(".afterGame").classList.toggle("invisible");
-    document.getElementById("double").classList.toggle("unavailable");
     document.querySelector(".offGame").classList.toggle("invisible");
     let cards = document.querySelectorAll(".cards");
     cards.forEach(card => {
@@ -212,6 +211,10 @@ function Reset() {
     document.querySelector(".dealer").classList.toggle("invisible");
     document.querySelector("#bet").innerText = "Bet:";
     document.getElementById("bank").innerText = "Bank: " + player.Money;
+    let double = document.getElementById("double").classList;
+    if(double.contains("unavailable")) {
+        double.toggle("unavailable");
+    }
 }
 //#endregion
 

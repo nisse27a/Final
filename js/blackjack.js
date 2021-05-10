@@ -130,9 +130,9 @@ function CalculateSum(user) {
 
 function PrintCard(user, card) {
     if(card.Value>10||card.Value==1) {
-        document.querySelector("." + user.PlayField).innerHTML += "<div>" + card.Rank + "\nof\n" + card.Suit+ "</div>";
+        document.querySelector("." + user.PlayField).innerHTML += "<div class=\"cards\">" + card.Rank + "\nof\n" + card.Suit+ "</div>";
     } else {
-        document.querySelector("." + user.PlayField).innerHTML += "<div>" + card.Value + "\nof\n" + card.Suit+ "</div>";
+        document.querySelector("." + user.PlayField).innerHTML += "<div class=\"cards\">" + card.Value + "\nof\n" + card.Suit+ "</div>";
     }
 }
 
@@ -141,6 +141,7 @@ function PrintCard(user, card) {
 //#region Betting
 document.getElementById("bank").innerText += " " + player.Money;
 document.querySelector("input[type='text']").value = player.Bet;
+
 function ChangeBet(buttonFunction) {
     let currentBet = document.querySelector("input[type='text']").value;
     switch(buttonFunction) {
@@ -166,6 +167,7 @@ function ChangeBet(buttonFunction) {
     }
     document.querySelector("input[type='text']").value = currentBet;
 }
+
 function Bet() {
     player.Bet = parseInt(document.querySelector("input[type='text']").value);
     if(player.Bet>player.Money) {
@@ -182,10 +184,11 @@ function Bet() {
 
     GameStart();
 }
-
 //#endregion
 
 //#region Game
+
+//#region preGame
 function GameStart() {
     for(let i = 0; i < 2; i++) {
         PickCard(dealer);
@@ -195,6 +198,24 @@ function GameStart() {
     PrintCard(dealer, dealer.Cards[0]);
 }
 
+function Reset() {
+    player.Cards = [];
+    dealer.Cards = [];
+    document.querySelector(".afterGame").classList.toggle("invisible");
+    document.getElementById("double").classList.toggle("unavailable");
+    document.querySelector(".offGame").classList.toggle("invisible");
+    let cards = document.querySelectorAll(".cards");
+    cards.forEach(card => {
+        card.parentNode.removeChild(card);
+    });
+    document.querySelector(".player").classList.toggle("invisible");
+    document.querySelector(".dealer").classList.toggle("invisible");
+    document.querySelector("#bet").innerText = "Bet:";
+    document.getElementById("bank").innerText = "Bank: " + player.Money;
+}
+//#endregion
+
+//#region inGame
 function Hit() {
     //Ta ett kort, kolla om summan är 21 eller mer, isåfall calla stand
     PickCard(player);
@@ -227,7 +248,9 @@ function Double() {
 function Split() {
     alert("This function is currently in development");
 }
+//#endregion
 
+//#region postGame
 function WinCheck(blackjack) {
     let playerScore = player.CardSum;
     let dealerScore = dealer.CardSum;
@@ -274,4 +297,5 @@ function Loss() {
     document.getElementById("result").innerText = "Loss";
     document.getElementById("resultText").innerText = "The dealer beat you and you lost " + player.Bet + " tokens";
 }
+//#endregion
 //#endregion

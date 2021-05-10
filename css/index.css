@@ -4,7 +4,7 @@
   width: auto;
   background-size: cover;
   background-position: center;
-  filter: saturate(50%);
+  filter: saturate(60%);
 }
 
 div + h1 {

@@ -6,15 +6,17 @@
   --color5: #ec4e20;
 }
 section {
-  margin: 15vh 25vw 0;
-  width: 50vw;
+  /* margin: 15vh 25vw 0; */
+  height: 89vh;
   display: grid;
-  grid-template-columns: 5fr 1fr;
-  grid-template-rows: 5fr 1fr;
+  grid-template-columns: 1fr 5fr 1fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    "tiles sidebar"
-    "bottombar .";
+    ". . . ."
+    ". tiles sidebar ."
+    ". bottombar . ."
+    ". . . .";
 }
 
 #tiles {

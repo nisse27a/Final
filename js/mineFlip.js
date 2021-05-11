@@ -93,8 +93,8 @@ function setup() {
     }
     for(let row = 0; row<5; row++) {
         let newButton = document.createElement("button");
-        newButton.setAttribute("id","button" + row);
-        newButton.setAttribute("onclick", "tileFlip(\"button" + row +"\")");
+        newButton.setAttribute("id","button" + "6-" + row);
+        newButton.setAttribute("onclick", "tileFlip(\"button" + "6-" + row +"\")");
 
         document.getElementById("sidebar").appendChild(newButton);
         newButton.innerHTML = "<p>Sum:" + rowSum(row) + "</p>";
@@ -102,8 +102,8 @@ function setup() {
     }
     for(let column = 0; column<5; column++) {
         let newButton = document.createElement("button");
-        newButton.setAttribute("id","button" + column);
-        newButton.setAttribute("onclick", "tileFlip(\"button" + column +"\")");
+        newButton.setAttribute("id","button" + column + "-6");
+        newButton.setAttribute("onclick", "tileFlip(\"button" + column +"-6\")");
 
         document.getElementById("bottombar").appendChild(newButton);
         newButton.innerHTML = "<p>Sum:" + columnSum(column) + "</p>"; 

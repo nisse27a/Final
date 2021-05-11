@@ -19,6 +19,12 @@ section {
     ". . . .";
 }
 
+@media screen and (max-width: 500px) {
+  * {
+    font-size: 0.9rem;
+  }
+}
+
 #tiles {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

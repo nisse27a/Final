@@ -19,14 +19,6 @@ section {
   height: 89vh;
 }
 
-.dealer {
-  grid-area: dealer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .player {
   grid-area: player;
   display: flex;
@@ -35,17 +27,35 @@ section {
   justify-content: center;
 }
 
-.betting {
+.betButton {
+  grid-area: betButton;
+}
+
+.dealer {
+  grid-area: dealer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*#endregion*/
+
+/*#region Betting*/
+
+#betting {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.preGame {
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas: "betButton multipleButtons";
   grid-area: playerInput;
-}
-
-.betButton {
-  grid-area: betButton;
 }
 
 .multipleButtons {
@@ -61,19 +71,11 @@ section {
 
 /*#endregion*/
 
-/*#region Betting*/
-#betting {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-/*#endregion*/
-
 /*#region GameToggle*/
 .invisible {
   display: none;
 }
+
 fieldset {
   height: 100%;
 }

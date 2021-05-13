@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nisses Casino - Mineflip, a game about trying not to flip mines, part skill, part luck">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mineFlip.css">
-    <meta name="description" content="Nisses Casino - Mineflip, a game about trying not to flip mines, part skill, part luck">
-    <title>Document</title>
+    <title>Mine Flip</title>
+    
 </head>
 <body>
-    <script defer async src="../js/mineFlip.js"></script>
     <header>
         <nav>
             <ul>
@@ -21,11 +21,38 @@
                 <li class="item"><a class="textOption" href="#" onclick="alert('Denna sida är inte tillgänglig än')">Roulette</a></li>
             </ul>
         </nav>
-    </header>
+    </header>   
     <section>
-        <div id="tiles"></div>
-        <div id="sidebar"></div>
-        <div id="bottombar"></div>
+        <div class="preGame">
+            <form class="betButton">
+                <fieldset id="betting">
+                    <legend id="bank">Bank:</legend>
+                    <label>
+                        Bet amount:
+                        <input type="text">
+                        <button type="button" onclick="Bet()">Bet</button>
+                    </label>
+                </fieldset>
+            </form>
+            <div class="multipleButtons">
+                <button onclick="ChangeBet('timesTwo')">x2</button>
+                <button onclick="ChangeBet('divideTwo')">/2</button>
+                <button onclick="ChangeBet('clear')">Clear</button>
+                <button onclick="ChangeBet('max')">Max</button>
+            </div>
+        </div>
+        <div class="inGame invisible">
+            <div id="tiles"></div>
+            <div id="bottombar"></div>
+            <div id="sidebar"></div>
+        </div>
+        <div class="afterGame invisible">
+            <fieldset>
+                <legend id="result"></legend>
+                <p id="resultText"></p>
+                <button onclick="Reset()">Reset</button>
+            </fieldset>
+        </div>
     </section>
     <footer>
         <div>
@@ -39,5 +66,7 @@
             <p>If there are any issues please contact me</p>
         </div>
     </footer>
+    <script defer async src="../js/betting.js"></script>
+    <script defer async src="../js/mineFlip.js"></script>
 </body>
 </html>

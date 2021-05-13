@@ -2,7 +2,7 @@
 
 //#region setup
 
-let player = {
+player = {
     Cards: [],
     CardSum: 0,
     Bet: GetBet(),
@@ -15,29 +15,7 @@ let dealer = {
     PlayField: "dealer"
 }
 
-function GetMoney() {
-    let money = localStorage.getItem("bank");
-    if(money=="null"||money==null) {
-        localStorage.setItem("bank","10000")
-    }
-    return parseInt(localStorage.getItem("bank"));
-}
 
-function SetBank(money) {
-    localStorage.setItem("bank", JSON.stringify(money))
-}   
-
-function GetBet() {
-    let bet = localStorage.getItem("bet");
-    if(bet=="null"||bet==null) {
-        localStorage.setItem("bet","100")
-    }
-    return parseInt(localStorage.getItem("bet"));
-}
-
-function SetBet(bet) {
-    localStorage.setItem("bet", JSON.stringify(bet))
-}
 
 //Carddeck är organiserad som en nestad array där de nestade arrays är de olika färger
 //[[Diamnods],[Spades],[Hearts],[Clubs]]
@@ -138,58 +116,11 @@ function PrintCard(user, card) {
 
 //#endregion
 
-//#region Betting
-document.getElementById("bank").innerText += " " + player.Money;
-document.querySelector("input[type='text']").value = player.Bet;
-
-function ChangeBet(buttonFunction) {
-    let currentBet = document.querySelector("input[type='text']").value;
-    switch(buttonFunction) {
-        case "timesTwo":
-            if(currentBet*2>player.Money) {
-                currentBet = player.Money;
-            } else {
-                currentBet *= 2;
-            }
-            break;
-        case "divideTwo":
-            if((currentBet/2)%1==0.5) {
-                currentBet++;
-            }
-            currentBet /= 2;
-            break;
-        case "clear":
-            currentBet = "";
-            break;
-        case "max":
-            currentBet = player.Money;
-            break;
-    }
-    document.querySelector("input[type='text']").value = currentBet;
-}
-
-function Bet() {
-    player.Bet = parseInt(document.querySelector("input[type='text']").value);
-    if(player.Bet>player.Money) {
-        player.Bet = player.Money;
-    }
-    document.getElementById("bet").innerText += " " + player.Bet;
-
-    document.querySelector(".offGame").classList.toggle("invisible");
-    let inGameFields = document.querySelectorAll(".inGame");
-    inGameFields.forEach((field) => {
-        field.classList.toggle("invisible");
-    });
-    SetBet(player.Bet);
-
-    GameStart();
-}
-//#endregion
-
 //#region Game
 
 //#region preGame
-function GameStart() {
+function Setup() {
+    document.getElementById("bet").innerText += " " + player.Bet;
     for(let i = 0; i < 2; i++) {
         PickCard(dealer);
         PickCard(player);
@@ -202,7 +133,7 @@ function Reset() {
     player.Cards = [];
     dealer.Cards = [];
     document.querySelector(".afterGame").classList.toggle("invisible");
-    document.querySelector(".offGame").classList.toggle("invisible");
+    document.querySelector(".preGame").classList.toggle("invisible");
     let cards = document.querySelectorAll(".cards");
     cards.forEach(card => {
         card.parentNode.removeChild(card);
@@ -275,11 +206,11 @@ function WinCheck(blackjack) {
 function Win(blackjack) {
     let prizeMoney;
     if(blackjack){
-        player.Money = player.Money + 1.5*player.Bet;
+        player.Money += 1.5*player.Bet;
         prizeMoney = 1.5*player.Bet;
         document.querySelector(".afterGame").classList.toggle("invisible");
     } else {
-        player.Money = player.Money + 2*player.Bet;
+        player.Money += 2*player.Bet;
         prizeMoney = player.Bet;
     }
     SetBank(player.Money);
@@ -289,6 +220,7 @@ function Win(blackjack) {
 }
 
 function Push() {
+    SetBank(player.Money + player.Bet);
     document.querySelector(".gameInput").classList.toggle("invisible");
     document.getElementById("result").innerText = "Push";
     document.getElementById("resultText").innerText = "You and the dealer achieved the same number of points, thereby reaching a tie";

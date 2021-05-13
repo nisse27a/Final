@@ -8,11 +8,12 @@
     <meta name="description" content="Nisses Casino - Classic blackjack, bet with free tokens and WIN the jackpot">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/blackjack.css">
-    <title>Document</title>
-    <script defer async src="../js/blackjack.js"></script>
+    <title>Blackjack</title>
 </head>
 
 <body>
+    <script defer async src="../js/betting.js"></script>
+    <script defer async src="../js/blackjack.js"></script>
     <header>
         <nav>
             <ul>
@@ -25,13 +26,7 @@
         </nav>
     </header>
     <section>
-        <div class="player inGame invisible">
-            <p>Player:</p>
-        </div>
-        <div class="dealer inGame invisible">
-            <p>Dealer:</p>
-        </div>
-        <div class="betting offGame">
+        <div class="preGame">
             <form class="betButton">
                 <fieldset id="betting">
                     <legend id="bank">Bank:</legend>
@@ -48,6 +43,12 @@
                 <button onclick="ChangeBet('clear')">Clear</button>
                 <button onclick="ChangeBet('max')">Max</button>
             </div>
+        </div>
+        <div class="player inGame invisible">
+            <p>Player:</p>
+        </div>
+        <div class="dealer inGame invisible">
+            <p>Dealer:</p>
         </div>
         <div class="gameInput inGame invisible">
             <fieldset>

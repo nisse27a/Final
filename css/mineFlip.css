@@ -5,8 +5,28 @@
   --color4: #fffbff;
   --color5: #ec4e20;
 }
-section {
-  height: 89vh;
+
+main + h1 {
+  text-align: center;
+  line-height: 5vh;
+  color: var(--color5);
+  background-color: var(--main-color);
+}
+#tutorial {
+  display: grid;
+  padding: 2vh 1vw;
+  grid-template-columns: 5fr 5fr;
+  grid-gap: 4vw;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 800px) {
+  #tutorial {
+    grid-template-columns: 1fr;
+  }
+}
+main {
+  height: 84vh;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 3fr 1fr;
@@ -22,7 +42,7 @@ section {
 .afterGame {
   grid-area: playerInput;
 }
-section .inGame {
+main .inGame {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr 1fr;
   grid-template-rows: 1fr 5fr 1fr 1fr;
